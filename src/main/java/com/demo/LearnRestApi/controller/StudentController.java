@@ -2,6 +2,7 @@ package com.demo.LearnRestApi.controller;
 import com.demo.LearnRestApi.dto.AddStudentRequestDto;
 import com.demo.LearnRestApi.dto.StudentDto;
 import com.demo.LearnRestApi.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class StudentController {
     }
 
     @PostMapping
-    public ResponseEntity<StudentDto> createNewStudent(@RequestBody AddStudentRequestDto addStudentRequestDto) {
+    public ResponseEntity<StudentDto> createNewStudent(@RequestBody @Valid AddStudentRequestDto addStudentRequestDto) {
         StudentDto saved = studentService.createNewStudent(addStudentRequestDto);
         return ResponseEntity.status(201).body(saved);
     }
